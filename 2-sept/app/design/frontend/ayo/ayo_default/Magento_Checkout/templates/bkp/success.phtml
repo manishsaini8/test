@@ -1,0 +1,303 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php /** @var $block \Magento\Checkout\Block\Onepage\Success */
+
+//$orderid= 000000075; 
+ //$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+//$order = $objectManager->create('Magento\Sales\Api\Data\OrderInterface')->load($orderid);
+ ?>
+<style>
+@media only screen and (min-width: 1024px){
+	.checkout-onepage-success .checkout-container{display:none;}
+}
+@media only screen and (max-width: 767px){
+	.checkout-onepage-success .checkout-container {
+    margin-bottom: 15px;
+}
+	.checkout-onepage-success .checkout-success {
+    margin-bottom: 20px;
+}
+	.checkout-container .opc-progress-bar .opc-progress-bar-item span {
+    font-size: 15px;
+	}
+	.checkout-onepage-success #maincontent .actions-toolbar>.primary .primary {
+    border-radius: 0;
+}
+   .checkout-success .actions-toolbar {
+    width: 100%;
+    float: left;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 5;
+}
+.checkout-onepage-success li.opc-progress-bar-item._complete:nth-child(2):before {
+    border-radius: 6px 0 0 6px;
+    background: #e4e4e4;
+    top: 11px;
+    left: 65px !important;
+}
+	.checkout-onepage-success .opc-progress-bar-item:first-child:before {
+    border-radius: 6px 0 0 6px;
+    background: #e4e4e4;
+    top: 11px;
+    left: 65px !important;
+}
+	.checkout-onepage-success .checkout-container .opc-progress-bar-item {
+    width: 32%;
+}
+}
+</style>
+<div id="checkout" class="checkout-container">
+<ul class="opc-progress-bar">
+    <!-- ko foreach: { data: steps().sort(sortItems), as: 'item' } -->
+        <li class="opc-progress-bar-item _complete" data-bind="css: item.isVisible() ? '_active' : ($parent.isProcessed(item) ? '_complete' : '')">
+            <span data-bind="i18n: item.title, click: $parent.navigateTo">Shipping</span>
+        </li>
+    
+        <li class="opc-progress-bar-item _complete" data-bind="css: item.isVisible() ? '_active' : ($parent.isProcessed(item) ? '_complete' : '')">
+            <span data-bind="i18n: item.title, click: $parent.navigateTo">Review &amp; Payments</span>
+        </li>
+    <!-- /ko -->
+	<li class="opc-progress-bar-item _active">
+        <span data-bind="i18n: 'Confirmaton'">Confirmaton</span>
+    </li>
+</ul>
+</div>
+<style>
+@media only screen and (max-width: 767px){
+	.checkout-onepage-success .shipping_custom{display:block !important;}
+	.checkout-onepage-success .order_custom{display:block !important;}
+	.checkout-onepage-success #maincontent{
+    background: #f8f8f8;
+}
+.order_custom .order_items_prd .col-xs-8 h3.title_item {
+    font-size: 14px;
+	font-weight: 600;
+}
+.order_custom .order_items_prd .col-xs-8 {
+    padding-top: 18px;
+}
+.order_custom .order_items_prd.col-xs-12 {
+    background: #fff;
+    margin-bottom: 10px;
+	border-radius: 10px;
+}
+.order_custom .price_item span.price {
+    color: #F98282;
+    font-size: 20px;
+    font-weight: 600;
+}
+.order_custom .order_items_prd .col-xs-4 {
+    padding-top: 12px;
+}
+.shipping_custom i.fa.fa-map-marker{
+float: left;
+
+    font-size: 32px;
+}
+.shipping_custom .addrees-info{
+    margin-left: 30px !important;
+}
+.shipping_custom .addrees-info p {
+    font-size: 15px;
+    font-weight: 600;
+	margin-bottom: 0;
+}
+}
+</style>
+
+<?php
+$objectManager =  \Magento\Framework\App\ObjectManager::getInstance();
+$orderDatamodel = $objectManager->get('Magento\Sales\Model\Order')->getCollection()->getLastItem();
+$orderId   =   $orderDatamodel->getId();
+$order = $objectManager->create('\Magento\Sales\Model\Order')->load($orderId);
+ $priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data'); ?>
+ 
+
+<div class="shipping_custom col-xs-12" style="display:none; margin: 20px 0;text-align: left;">
+<h4 style="margin-bottom: 30px;font-size: 18px;font-weight: 500;">Your Delivery Address</h4>			
+<?php
+ 
+//fetch whole billing information
+//echo'<pre>';
+$ship = $order->getShippingAddress()->getData();
+
+//echo'</pre>';?>
+<img src="/pub/media/map-icon.png" style="float: left;"/>
+<div class="addrees-info">
+<p style="font-size: 20px;font-weight: 600;text-transform: capitalize;"><?php echo $ship['firstname'].' '; ?>
+<?php echo $ship['lastname'];?></p>
+<p> <?php echo $ship['street'].',';?></p>
+<p> <?php echo $ship['city'].',';?></p>
+<p> <?php echo $ship['region'].',';?></p>
+<p> <?php echo $ship['country_id'].'.'; ?></p>
+<p> <?php echo $ship['telephone'];?></p>
+</div>
+</div>
+
+
+<div class="order_custom" style="display:none; text-align: left;">	
+<h4 style="margin-bottom: 10px;font-size: 15px;font-weight: 500;display: inline-block;">Order Review</h4>			
+<div class="container">
+    <div class="row">		 
+	<?php	
+foreach ($order->getAllItems() as $item){
+	 $_product = $objectManager->get('Magento\Catalog\Model\Product')->load( $item->getProductId());
+		  $imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
+	?>
+   <div class="order_items_prd col-xs-12">
+   <div class="col-xs-4">
+    <div class="img_item"><?php 
+	$image_url = $imageHelper->init($_product, 'product_page_image_small')->setImageFile($_product->getImage())->resize(80, 80)->getUrl();
+	?>
+	<img src="<?php echo $image_url ?>" />
+	</div>
+   </div>
+   <div class="col-xs-8">
+   <h3 class="title_item"><?php echo $item->getName(); ?> </h3>
+   <p class="item_qty" style="margin-top: 7px;margin-bottom: 6px;"><?php  $qty = $item->getQtyOrdered(); 
+            $qnty = (int)$qty;
+			echo 'X '. $qnty;?> </p>
+       <p class="price_item"><?php echo $priceHelper->currency($item->getPrice()); ?></p>
+   
+   </div>
+   </div>
+     
+<?php } ?>
+		</div>	
+</div>
+   </div> 
+
+
+
+
+<div class="checkout-success">
+    <?php if ($block->getOrderId()) :?>
+        <?php if ($block->getCanViewOrder()) :?>
+            <p><?= $block->escapeHtml(__('Your order number is: %1.', sprintf('<a href="%s" class="order-number"><strong>%s</strong></a>', $block->escapeUrl($block->getViewOrderUrl()), $block->getOrderId())), ['a', 'strong']) ?></p>
+        <?php  else :?>
+            <p><?= $block->escapeHtml(__('Your order # is: <span>%1</span>.', $block->getOrderId()), ['span']) ?></p>
+        <?php endif;?>
+            <p><?= $block->escapeHtml(__('We\'ll email you an order confirmation with details and tracking info.')) ?></p>
+    <?php endif;?>
+
+    <?= $block->getAdditionalInfoHtml() ?>
+
+    <div class="actions-toolbar">
+        <div class="primary">
+            <a class="action primary continue" href="<?= $block->escapeUrl($block->getContinueUrl()) ?>"><span><?= $block->escapeHtml(__('Continue Shopping')) ?></span></a>
+        </div>
+    </div>
+</div>
+ <style>
+ .modal-popup .modal-header, .modal-popup .modal-content, .modal-popup .modal-footer {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+#reward_model{
+	background: #fff;  
+    padding: 10px;
+	    padding-bottom: 0;
+	
+}
+.modal-slide .modal-inner-wrap, .modal-popup .modal-inner-wrap{    background-color: transparent;box-shadow:unset;}
+ .rewardimage{
+     text-align: center;
+    position: relative;
+    margin-top: -50px;
+ }
+.rewardimage  img{max-width: 135px;}
+
+.modal-inner-wrap{ max-width: 360px;}
+.back_button_class{width:100%;}
+.modal-popup.modal-slide .modal-footer{border-top:unset; padding-top: 5px;}
+.modal-popup .modal-footer{    
+	    padding-bottom: 20px;
+    padding-top: 0px;
+    background: #fff;
+    padding-left: 20px;
+    padding-right: 20px;
+	}
+.rewardcount {
+    text-align: center;
+}
+span#enterpoint {
+    font-size: 40px;
+    text-align: center;
+    font-weight: bold;
+	color:#72279C;
+}
+.rewardmessage,.rewardcount {
+    text-align: center;
+	margin-top: 12px;
+}
+.rewardmessage b{font-weight:bold;}
+
+.action-close{display:none !important;}
+.reward_modal_popup .modal-content {
+   margin-bottom: 0px; 
+      border-radius: unset;
+	  padding-bottom: 20px; 
+}
+.reward_modal_popup .modal-footer {
+    border-top: unset;
+   
+}
+.modal-slide .modal-content{ padding-bottom: 20px; }
+.reward_modal_popup .back_button_class.action.primary{ background-color: #72279C;color:#fff;}
+.reward_modal_popup .modal-popup.modal-slide .modal-footer {
+    padding-top: 10px;
+}
+ </style>
+<?php $blockObj= $block->getLayout()->createBlock('Aheadworks\RewardPoints\Block\Customer\RewardPointsBalance\Account');
+
+ ?>
+<div id="reward_model" style="display: none"> 
+		 <div class="rewardimage"><img src="<?php echo $block->getViewFileUrl('images/coin.png'); ?>" />	</div>
+          <div class="rewardmessage">
+		 
+		  <b>Thank you for your Purchase</b>
+		  <p>Payment has been made successfully</p>
+		  </div>
+		  <div class="rewardcount">
+		  <p>You just Earn</p>
+		  <p><span id="enterpoint"><?php echo $blockObj->getCustomerRewardPointsBalance(); ?></span></p>
+		  <p>Points</p>
+		  </div>
+</div>
+
+ <script type="text/javascript">
+    require(['jquery','Magento_Ui/js/modal/modal'],function($, modal) {
+        'use strict';
+        var options = {
+            'type': 'popup',
+            'title': '',
+            'modalClass': 'reward_modal_popup',
+            'responsive': true,
+        //    'innerScroll': true,
+            'buttons': [{
+               text: $.mage.__('Ok'),
+                class: 'back_button_class btn action primary',
+                click: function () {
+                    this.closeModal();
+                    // any javascript coode
+                }
+            }]
+        };
+
+        var popup = modal(options, $('#reward_model'));		
+        //$("#write_review, .reviews-actions .action.add").on('click',function(){			
+            $("#reward_model").modal("openModal");
+       // });
+
+       });
+   
+</script>
+
+
+

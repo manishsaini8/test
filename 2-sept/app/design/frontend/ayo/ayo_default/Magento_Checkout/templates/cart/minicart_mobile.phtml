@@ -1,0 +1,73 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Checkout\Block\Cart\Sidebar */
+?>
+
+<div data-block="minicart-mobile" class="minicart-wrapper">
+    <a class="showcart mobile header-mini-cart" href="<?php /* @escapeNotVerified */ echo $block->getShoppingCartUrl(); ?>"
+       data-bind="scope: 'minicart_content_mobile'">
+        <!-- <span class="text"><?php /* @escapeNotVerified */ echo __('My Cart'); ?></span> -->
+        <span class="counter qty empty"
+              data-bind="css: { empty: !!getCartParam('summary_count') == false }, blockLoader: isLoading">
+			<!-- <span class="icon-cart-header"><i class="menu-icon  icon flaticon-shopping-cart6">&nbsp;</i></span> -->
+            <span class="total-mini-cart-item">
+            <!-- ko if: getCartParam('summary_count') -->
+                <!-- ko text: getCartParam('summary_count') --><!-- /ko -->
+            <!-- /ko -->
+            <!-- ko if: !getCartParam('summary_count') -->
+                0
+            <!-- /ko -->
+            </span>
+        </span>
+        <!-- <span class="content-cart hidden-xs">
+            <span class="my-cart">My cart:</span>
+            <span class="total-mini-cart-price" data-bind="html: getCartParam('subtotal')"></span>
+        </span> -->
+        
+    </a>
+    <?php if ($block->getIsNeedToDisplaySideBar()): ?>
+        <div class="block block-minicart empty"
+             data-role="dropdownDialog"
+             data-mage-init='{"dropdownDialog":{
+                "appendTo":"[data-block=minicart-mobile]",
+                "triggerTarget":".showcart",
+                "timeout": "2000",
+                "closeOnMouseLeave": true,
+                "closeOnEscape": true,
+                "triggerClass":"active",
+                "parentClass":"active",
+                "buttons":[]}}'>
+            <div id="minicart-content-wrapper" data-bind="scope: 'minicart_content_mobile'">
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            </div>
+            <?php echo $block->getChildHtml('minicart.addons'); ?>
+        </div>
+     <?php else: ?>
+        <script>
+            require(['jquery'], function ($) {
+                $('a.showcart.mobile').click(function() {
+                    $(document.body).trigger('processStart');
+                });
+            });
+        </script>
+    <?php endif ?>
+    <script>
+        window.checkout = <?php /* @escapeNotVerified */ echo \Zend_Json::encode($block->getConfig()); ?>;
+    </script>
+    <script type="text/x-magento-init">
+    {
+        "[data-block='minicart-mobile']": {
+            "Magento_Ui/js/core/app": <?php /* @escapeNotVerified */ echo $block->getJsLayout();?>
+        },
+        "*": {
+            "Magento_Ui/js/block-loader": "<?php /* @escapeNotVerified */ echo $block->getViewFileUrl('images/loader-1.gif'); ?>"
+        }
+    }
+    </script>
+</div>
