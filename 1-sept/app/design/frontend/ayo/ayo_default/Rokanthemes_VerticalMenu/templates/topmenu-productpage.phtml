@@ -1,0 +1,43 @@
+<?php
+/**
+ * Copyright © 2016 TuanHatay. All rights reserved.
+ */
+
+?>
+<?php
+/**
+ * Top menu for store
+ *
+ * @see \Rokanthemes\VerticalMenu\Block\Verticalmenu
+ */
+?>
+<?php
+    $_helper = $this->helper('Rokanthemes\VerticalMenu\Helper\Data');
+    $_config = $_helper->getConfig('verticalmenu');
+    $columnsLimit = 0;
+    if($_config['general']['enable']) {
+?>
+<?php $_menu = $block->getVerticalMenuHtml(); ?>
+
+<nav class="navigation-product verticalmenu-product">
+    <ul>
+        <?php echo $_menu; ?>
+    </ul>
+</nav>
+
+<!--script type="text/javascript">
+    require([
+        'jquery',
+        'rokanthemes/verticalmenu'
+    ], function ($) {
+
+        $('.staticwidth').click(function(){
+            alert('hello');
+
+        });
+        
+    }(jQuery));
+</script-->
+<?php
+    } 
+?>

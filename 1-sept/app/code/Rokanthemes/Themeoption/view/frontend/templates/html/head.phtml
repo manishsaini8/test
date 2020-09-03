@@ -1,0 +1,142 @@
+<?php 
+	$data = $block->getConfig();
+    $_helper = $this->helper('Rokanthemes\Themeoption\Helper\Themeconfig');
+?>
+<?php
+    $charSubset = ",latin-ext";
+    $font_sizes = "%3A300%2C300italic%2C400%2C400italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic";
+?>
+<?php if (isset($data['font']['custom']) && $data['font']['custom'] && $data['font']['font_family'] == 'google'): ?>
+<link rel="stylesheet" media="all" href='//fonts.googleapis.com/css?family=<?php echo str_replace(' ', '+', $data['font']['google_font_family']).$font_sizes; echo $charSubset; ?>' type='text/css' />
+<?php else: ?>
+<link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,700" media="all" rel='stylesheet' type='text/css'/>
+<?php endif;?>
+<link rel="stylesheet" type="text/css" media="all" href="<?php echo $_helper->getThemeOption()?>" />
+<?php if (isset($data['general']['enable_preloaded']) && $data['general']['enable_preloaded'] == 1){ ?>
+<style type="text/css">
+#loading-fixed{ background-color: #bbbbbb; height: 100%; width: 100%; position: fixed; z-index: 999999; margin-top: 0px; top: 0px; } #loading-center-fixed{ width: 100%; height: 100%; position: relative; } #loading-center-absolute-fixed { position: absolute; left: 50%; top: 50%; height: 200px; width: 200px; margin-top: -100px; margin-left: -100px; -ms-transform: rotate(-135deg); -webkit-transform: rotate(-135deg); transform: rotate(-135deg); } .object-fixed{ -moz-border-radius: 50% 50% 50% 50%; -webkit-border-radius: 50% 50% 50% 50%; border-radius: 50% 50% 50% 50%; position: absolute; border-top: 5px solid #FFF; border-bottom: 5px solid transparent; border-left: 5px solid #FFF; border-right: 5px solid transparent; -webkit-animation: animate 2s infinite; animation: animate 2s infinite; } #object_one{ left: 75px; top: 75px; width: 50px; height: 50px; } #object_two{ left: 65px; top: 65px; width: 70px; height: 70px; -webkit-animation-delay: 0.2s; animation-delay: 0.2s; } #object_three{ left: 55px; top: 55px; width: 90px; height: 90px; -webkit-animation-delay: 0.4s; animation-delay: 0.4s; } #object_four{ left: 45px; top: 45px; width: 110px; height: 110px; -webkit-animation-delay: 0.6s; animation-delay: 0.6s; } @-webkit-keyframes animate { 50% { -ms-transform: rotate(360deg) scale(0.8); -webkit-transform: rotate(360deg) scale(0.8); transform: rotate(360deg) scale(0.8); } } @keyframes animate { 50% { -ms-transform: rotate(360deg) scale(0.8); -webkit-transform: rotate(360deg) scale(0.8); transform: rotate(360deg) scale(0.8); } }
+</style>
+<?php } ?>
+<style type="text/css">
+	.page-layout-1column .product-info-main {
+	    width: auto;
+	    float: none;
+	}
+	.checkout-onepage-success .checkout-success, 
+	.checkout-onepage-success #registration ,
+	.checkout-onepage-success #maincontent .page-title-wrapper {
+		text-align: center;
+		    font-weight: 400;
+			 color: #222;
+	}
+	.checkout-onepage-success .page-title-wrapper .page-title .base {
+		font_size: 24px;
+	}
+	.checkout-onepage-success #maincontent .actions-toolbar>.primary .primary {
+		border-radius: 30px;
+	}
+	.product-add-form .fieldset>.field:not(.choice)>.control {
+	    width: 74.2%;
+	}
+	.product-info-main .box-tocart .input-text.qty, .product-options-bottom .box-tocart .input-text.qty {
+	    height: auto;
+	    text-align: center;
+	    width: auto;
+	}
+	.wrapper_quickview_item .product-info-main .box-tocart .action.tocart {
+		font-size: 12px;
+		padding: 0 50px;
+		line-height: 1;
+	}
+	.wrapper_quickview_item .product-info-main .box-tocart .actions,
+	.wrapper_quickview_item .product-options-bottom .box-tocart .actions {
+		padding-top: 0;
+	}
+	.product-view .detail-info-product-view .product-add-form, .wrapper_quickview_item .detail-info-product-view .product-add-form {
+	    border-top: 0;
+	    padding-top: 0;
+	}
+	.catalog-product-view .product-add-form {
+	    float: none;
+	    border: none;
+	    padding: 0;
+	    margin: 0;
+	}
+	.multicheckout .action.primary {
+	    padding: 0 50px;
+    	font-size: 14px;
+	}
+	.block-search .block-content button.action{
+		margin: 0;
+	}
+	.form-login #customer-email-fieldset{
+		margin-top: 10px;
+	}
+	.fancybox-close{
+		background: transparent;
+		top: 0;
+		right: 0;
+	}
+	.fancybox-close:after{
+		color: #ff9300;
+		font-size: 21px;
+		line-height: 38px;
+		display: block;
+		font-weight: 400;
+		content: "\e082";
+		font-family: 'simple-line-icons';
+		text-align: center;
+	}
+	.fancybox-close{
+		    background: transparent;
+		top: 0;
+		right: 0;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center
+	}
+	#relate_product_slider .item-product .product-extra-link .quickview-product,
+	#upsell_product_slider .item-product .product-extra-link .quickview-product{
+		display: none;
+	}
+	@media (max-width: 1500px) and (min-width: 1399px){
+		.velaNewsletterFooter .velaContentTitle{
+			width: 41% !important;
+		}
+		.velaNewsletterFooter .velaContentForm{
+			width: 38% !important;
+		}
+		.velaNewsletterFooter .velaContentSupport{
+			width: 21% !important;
+		}
+	}
+	.page.messages{
+		width: 100%;
+		max-width: 1600px;
+		padding: 0 15px; 
+	} 
+	@media (max-width: 480px){
+		#one-step-checkout-form .checkout-review-load .data-table td h2{
+			margin-top: 5px;
+		}
+		.products-list .item-product .product-info{
+			padding-right: 0;
+		}
+	}
+	@media (max-width: 767px){
+		.product-list .item-product{
+			    margin: 0 auto 40px;
+		}
+		.product-list .item-product{
+			max-width: 100%;
+		}
+	}
+	@media (max-width: 991px){
+		.vc_tta-tabs-container.pull-right{
+			width: 100%;
+			max-width: 100%;
+			overflow: auto;
+			margin-right: 0;
+		}
+	}
+</style>

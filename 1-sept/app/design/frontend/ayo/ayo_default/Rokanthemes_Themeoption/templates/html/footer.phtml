@@ -1,0 +1,233 @@
+
+<?php
+ /* fotter hide code if condtion by manish */
+ if(@$_GET['footer'] =='false' ){
+
+}else{	?>
+
+
+<style>
+@media only screen and (max-width: 767px){
+	.custom_newsletter .container {
+    margin-bottom: 15px;
+}
+	.custom_newsletter i.fa.fa-paper-plane-o {
+    font-size: 25px;
+    position: absolute;
+    top: 13px;
+    left:17px;
+}
+.custom_newsletter .fa-send-o:before, .fa-paper-plane-o:before {
+    font-size: 30px;
+}
+	.custom_newsletter span.custom_news_left{
+		padding-left: 0px; 
+	 
+	}
+	.custom_newsletter span.custom_news_center {
+		    margin: 20px 0;
+    float: right;
+        font-size: 13px;
+    text-align: left;
+}
+	.custom_newsletter form#newsletter-validate-detail {
+    float: none;
+	    margin-top: 0%;
+    margin-right: 0%;
+}	
+	.newsletter-footer input[type="email"] {
+		border-right: 0;
+		background: unset;
+    margin-left: 0;
+	width: 100%;
+	}
+	.newsletter-footer .actions {
+    width: 30%;
+    float: left;
+}
+	.newsletter-footer .control {
+    float: left;
+    width: 70% !important;
+}
+	.newsletter-footer button.action {
+    background: #fff !important;
+    height: 40px;
+    color: #000;
+	}
+	.rowFlexMargin .vela-contactinfo .contacinfo-phone.contactinfo-item {
+    margin: 8px 0 25px !important;
+}
+	.rowFlexMargin .velaBlock .contacinfo-logo {
+    margin-bottom: 20px;
+}
+	.rowFlexMargin .velaBlock .velaFooterTitle {
+		    margin: 20px 0 0px;
+    color: #2f2e2e;
+    font-size: 18px;
+}
+	.rowFlexMargin .velaBlock .velaFooterLinks li a {
+    color: #000;
+    font-size: 16px;
+	}
+	.velaFooterMenu .velaFooterTitle:before{
+		display: none;
+	}
+	.velaFooterMenu .velaContent {
+     display: block;
+}
+	.rowFlexMargin ul.footer_social li img {
+    width: 20px;
+    min-height: 13px;
+}
+.rowFlexMargin ul.footer_social{
+    margin: 15px 0;
+}
+	.rowFlexMargin .vela-contactinfo .intro-footer.d-flex {
+    font-size: 13px;
+    color: #000;
+}
+	.rowFlexMargin a.cus_phone {
+    font-size: 17px;
+    color: #000;
+}
+	.rowFlexMargin .vela-contactinfo .contacinfo-phone.contactinfo-item .image_hotline {
+    width: auto !important;
+    height: auto !important;
+}
+.rowFlexMargin .vela-contactinfo .contacinfo-logo img {
+    width: auto;
+}
+.rowFlexMargin .vela-contactinfo .contacinfo-phone.contactinfo-item .wrap a.cus_phone {
+    font-size: 17px;
+    color: #000;
+}
+	
+}
+</style>
+
+
+
+<div class="page_footer">
+    <div class="container">
+         <div class="custom_store"><span class="cus_store_title">Stores</span>   <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('brand_section')->toHtml(); ?></div>
+      <div class="border-top-container"></div>
+    </div>
+  <div id="footer" class="footer-container layout2 footer">
+      <?php echo $this->getChildHtml("footer_static"); ?>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-6">
+          <?php  echo $this->getLayout()->createBlock("Rokanthemes\Themeoption\Block\Customcss")->setTemplate("html/copyright.phtml")->toHtml() ?>
+  
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6">
+          <?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('copyright')->toHtml(); ?>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<?php }
+ /* fotter hide code end if condtion by manish */
+ ?>
+<div class="fixed-right">
+  <?php echo $this->getChildHtml("fixed_right"); ?>
+</div>
+<div class="shadow_bkg"></div>
+<div class="shadow_bkg_show"></div>
+<div id="back-top" class="hidden-xs"><i class="fa fa-angle-up"></i></div>
+
+<script type="text/javascript">
+  require([
+      'jquery',
+      'mage/mage',
+      'rokanthemes/owl'
+    ], function ($) {
+      'use strict';
+    $( document ).ready(function() {
+     $(".block-content.brandowl-play >ul").owlCarousel({
+     lazyLoad:true,
+        items : 7,
+        itemsDesktop : [1366, 5],
+            itemsDesktopSmall : [991,3],
+            itemsTablet : [767, 2],
+            itemsMobile : [479, 1],
+          navigation : true,
+           afterAction: function(el){
+           this.$owlItems.removeClass('first-active')
+           this.$owlItems .eq(this.currentItem).addClass('first-active')  
+          }
+      });
+    });
+    var responsiveflag = false;
+
+    $(document).ready(function(){
+      responsiveResize();
+      $(window).resize(responsiveResize);
+    });
+    function responsiveResize()
+    {
+      if ($(window).width() <= 767 && responsiveflag == false)
+      {
+        accordionFooter('enable');
+        responsiveflag = true;
+      }
+      else if ($(window).width() >= 768)
+      {
+        accordionFooter('disable');
+        responsiveflag = false;
+      }
+    }
+    function accordionFooter(status)
+    {
+      if(status == 'enable')
+      {
+        $('.velaFooterMenu h4.velaFooterTitle').on('click', function(e){
+          $(this).toggleClass('active').parent().find('.velaContent').stop().slideToggle('medium');
+          e.preventDefault();
+        })
+      }
+      else
+      {
+        $('.velaFooterMenu h4.velaFooterTitle').removeClass('active').off().parent().find('.velaContent').slideDown('fast');
+      }
+    }
+  });
+</script>  
+
+<script>
+
+   require([
+       'jquery',
+      'rokanthemes/verticalmenu'
+   ], function ($) {
+	    $( document ).ready(function() {
+	  // alert('hello');
+	   
+				$(".verticalmenu").VerticalMenu();
+				$('body .navigation.verticalmenu .togge-menu').hide();
+				$('.title-category-dropdown').click(function(event){
+					$('.navigation.verticalmenu .togge-menu').slideToggle('slow');
+					$(this).toggleClass('active');
+					$( 'body' ).toggleClass( 'background_shadow_show' );
+
+				});
+				
+			
+				$('.shadow_bkg_show').click(function(event){
+					$('.navigation.verticalmenu .togge-menu').slideToggle('slow');
+					 $('.title-category-dropdown').removeClass('active');
+					$( 'body' ).removeClass( 'background_shadow_show' );
+
+				});
+	     });
+  /*     
+
+$( document ).ready(function() {
+
+
+});*/
+   });
+</script>

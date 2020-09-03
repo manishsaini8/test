@@ -1,0 +1,688 @@
+	<?php 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+ $baseurl = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB); 
+ /* header hide code if condtion by manish */
+if(@$_GET['header']=='false'){	
+if($_GET['uname'] !='' &&  $_GET['pwd'] !=''){		
+
+//header('Location:'. $baseurl.'/customer/account/login/?header=false&uname='.$_GET['uname'].'&pwd='.$_GET['pwd']);	
+/*
+$userData = ["username" => $_GET['uname'], "password" => $_GET['pwd']];
+$ch = curl_init("http://emall.fireworksloyalty.com/index.php/rest/V1/integration/customer/token");
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($userData));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json", "Content-Lenght: " . strlen(json_encode($userData))));
+ $token = curl_exec($ch);
+
+//Get customer info
+$ch = curl_init("http://emall.fireworksloyalty.com/index.php/rest/V1/customers/me");
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET"); // Get method
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json", "Authorization: Bearer " . json_decode($token)));
+
+$result = curl_exec($ch);
+
+$result = json_decode($result, 1);
+//print_r($result);
+
+
+// Load customer
+$customer = $objectManager->create('Magento\Customer\Model\Customer')->load($result['id']); //2 is Customer ID
+
+// Load customer session
+$customerSession = $objectManager->create('Magento\Customer\Model\Session');
+$customerSession->setCustomerAsLoggedIn($customer);
+header('Location:'. $baseurl .'?header=false');*/
+
+}
+}else{
+		
+
+		?>
+<style>
+@media only screen and (min-width: 1024px){
+	
+#header .wp-header .logo img {
+    position: relative !important;
+    top: 0 !important;
+}
+#header .wp-header .top-search .minicart-wrapper a.showcart.header-mini-cart{
+	top: 14px !important;
+}
+.header .wp-header .mini-cart-wrapper {
+    width: 40% !important;
+}
+#header .top-header .top-info {
+    float: left;
+}
+.page-wrapper .container {
+    width: 1200px;
+}
+.block-search .block-content input {
+    padding: 9px 10px !important;
+	line-height: 0 !important;
+	    height: auto !important;
+}
+.page.messages .message-notice.notice.message {
+    margin: 0 !important;
+}
+}
+
+
+@media only screen and (max-width: 767px){
+	/* css h pay*/
+.checkout-index-index .reward-points form#reward-points-form .reward-tit {
+		display: inherit;
+		padding-left: 35px;
+		height:35px;
+}
+.opc-payment-additional .form-reward-points .actions-toolbar label.label {
+	  padding-top:0;
+		padding: 10px;
+		display: inline-block;
+		padding-left: 0;
+		width:100%;
+    clear:both;	
+}
+.custom_mobile_header .header-content{
+		z-index:0 !important;
+}
+.opc-payment-additional .form-reward-points .actions-toolbar .primary {
+		margin-left: 4px;
+		text-align: center;
+		width: 60%;
+		background: #72279c;
+		margin-right: 0;
+		margin: 0 auto;
+}
+.payment-option._collapsible.opc-payment-additional.reward-points {
+    margin-top: 20px;
+}
+	.checkout-index-index .reward-points form#reward-points-form .reward-tit {
+		    padding-bottom: 8px;
+    font-size: 15px;
+    font-weight: bold;
+		padding-left: 30px;
+		background: #fff url('/pub/media/pay_reward.png') no-repeat !important;
+}
+	.checkout-index-index .reward-points form#reward-points-form {
+		display: flow-root;
+		border-radius: 3px;
+    background: #fff;
+	    padding-top: 20px !important;
+		padding:10px;
+}
+	.payment-option._collapsible.opc-payment-additional.discount-code button {
+    background: #72279C !important;
+    color: #fff !important;
+    border-radius: 0;
+}
+	.checkout-index-index .checkout-payment-method .payment-option-title .action-toggle {
+    color: #000;
+	}
+	.checkout-payment-method .payment-option-title .action-toggle:after{
+		 display: none;
+	}
+	.payment-option._collapsible.opc-payment-additional.discount-code .payment-option-title
+	{
+    background: #fff;
+    
+}
+.payment-option._collapsible.opc-payment-additional.discount-code .payment-option-content
+	{
+    background: #fff;
+   
+}
+	.checkout-index-index .reward-points .payment-option-title .action-toggle {
+    display: none;
+}
+	.checkout-payment-method .payment-option._collapsible .payment-option-content {
+    display: block !important;
+	}
+	.checkout-payment-method .payment-option-title {
+    border-top: none;
+}
+	.reward-points form#reward-points-form .actions-toolbar  {
+		padding-right: 10px;
+    padding-top: 0;
+		border-radius: 6px;
+		 background: #fff;
+		padding-bottom: 12px;
+    border: 1px solid #fff;
+    
+}
+	.opc-payment-additional .form-reward-points .label span {
+		white-space: break-spaces;
+		font-weight: 600;
+		    padding-left: 0px;
+    float: left;
+    font-size: 13px;
+	}
+.opc-payment-additional .form-reward-points button.action.action-apply span {
+	font-weight: 600;
+    font-size: 10px;
+}
+	.opc-payment-additional .form-reward-points .action {
+    border-radius: 0;
+    background: #72279c;
+    color: #fff;
+	padding: 0;
+}
+.checkout-index-index .checkout-payment-method .payment-method._active .action:after{
+content: "Proceed order";
+    color: #fff;
+	    font-weight: 600;
+}
+.checkout-index-index .checkout-payment-method .payment-method._active .action span{
+	display:none;
+}
+	.checkout-index-index .checkout-payment-method .payment-method._active .action{
+		left: 0;  
+		border-radius: 0;
+    margin-top: 0px;
+    padding: 5px 20px !important;
+    height: 50px;
+    font-size: 13px !important;
+    width: 100%;
+	position:fixed;
+	bottom:0;
+	z-index:5;
+	
+	}
+	/*.checkout-index-index .checkout-payment-method .gtotal p.shipping_product_total {
+	    font-size: 10px;
+    font-weight: bold;
+text-transform: capitalize;
+}
+.checkout-index-index .checkout-payment-method .payment-method-content > .actions-toolbar > .primary .action{
+	border-radius: 0;
+	 margin-top: 0px; 
+	     height: 50px;
+}
+	.checkout-index-index .checkout-payment-method .actions-toolbar .primary {
+    width: 40%;
+    float: right;
+}
+	.checkout-index-index .checkout-payment-method .actions-toolbar .gtotal {
+    width: 60%;
+    float: left;
+    padding-right: 10px;
+	padding: 4px 0;
+    text-align: right;
+}
+	.checkout-index-index .checkout-payment-method .actions-toolbar {
+    position: fixed;
+    width: 100% !important;
+    bottom: 32em;
+    height: 50px;
+    background: #fff;
+	box-shadow: 2px -2px 3px 1px rgb(175 173 173);
+	left: 0;
+	z-index: 5;
+}*/
+/* end css h */
+
+
+	.custom_mobile_header .verticalmenu.navigation.side-verticalmenu{
+		position: absolute;
+		    top: 0px;
+	}
+	.custom_mobile_header .nav-open .nav-sections.category-dropdown-item-content {
+    
+    overflow-y: scroll;
+}
+	.custom_mobile_header .nav-sections .togge-menu li {
+    display: block !important;
+}
+	.home-cat-cart button.btn-add-to-cart.action.tocart {
+    position: relative;
+    left: 0px !important;
+    top: 0;
+    height: 33px;
+	width:35px;
+}
+	.hot-deal-tab-slider .home-cat-cart {
+    position: relative;
+    width: 30%;
+    float: right;
+    margin-top: 15px;
+    max-width: 106px;
+    left: 20px;
+}
+	
+	.custom_mobile_header .top-search .block.block-search {
+    margin-top: 0;
+}
+	.page-footer .custom_store {
+    display: none;
+}
+	.custom_mobile_header .header_main {
+    border: none;
+}
+	.custom_mobile_header .block-search .block-content input {
+    padding: 8px 10px !important;
+	line-height: 18px !important;
+	    height: auto !important;
+		    border: 2px solid #72279c;
+}
+	.block-search .block-content .field-by-cat-search {
+    display: block;
+	border-left: 2px solid #760476;
+}
+	.custom_mobile_header .header-control.header-nav.cms_home_1.col-xs-2 {
+    display: block;
+}
+	.header-container{
+		display:none !important;
+	}
+	.custom_mobile_header{
+		margin:20px 0;
+		display:block !important;
+	}
+	.custom_mobile_header .mini-cart-wrapper ul.custom_heart li {
+    float: left !important;
+        margin: 2px 14px;
+}
+	.custom_mobile_header .wp-header .logo img{
+		position: relative;
+    width: 100%;
+    top: 2px;
+    left: 0;
+	}
+	.custom_mobile_header .header-content .top-header {
+    display: none;
+	}
+	.custom_mobile_header .wp-header .col-md-2.col-sm-2.col-xs-4 {
+       position: relative;
+    top: 30px;
+}
+.custom_mobile_header .header-content .minicart-wrapper {
+	right: -20px;
+	    margin-top: 0;
+	position: absolute !important;
+    top: 0 !important;
+    margin-right: 0;
+}
+.custom_mobile_header .mini-cart-wrapper ul.custom_heart {
+    margin: 0;
+	float: left;
+}
+
+.custom_mobile_header .header-control.header-nav.cms_home_1 .nav-toggle {
+    top: 10px;
+}
+.custom_mobile_header .top-search .mini-cart-wrapper {
+    width: unset !important;
+    float: right;
+}
+}
+</style>
+
+<div id="header" class="header-container">
+	<div class="header-content desktop">
+	
+		<div class="top-header">
+			<div class="container cus_tophead">
+				<div class="row cus_top_header">
+					<div class="col-md-2 col-lg-2">	
+						
+					</div>
+					<div class="col-xs-12 col-md-10 col-lg-10">
+						<div class="top-bar-left">
+							<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('top-left-static')->toHtml(); ?>
+						</div>
+						<div class="top-bar-right">
+							<div class="top-info">
+								<div class="top-account has-child">
+									<?php echo $this->getChildHtml("top.links"); ?>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	    <div class="header">
+	    	<div class="header_main">
+		    	<div class="header-main">
+	          		<div class="container">
+	          			<div class="row">
+				          	<div class="wp-header">
+					            <div class="col-md-2 col-sm-2 col-xs-4">
+									<?php echo $this->getChildHtml("logo"); ?>
+								</div>
+								<div class="hidden-sm hidden-md hidden-lg col-xs-8">
+								 	<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('menu_links_mobile')->toHtml(); ?>
+								</div>
+					            <div class="col-md-10 col-sm-10 col-xs-12 top-search">
+						            <div class="mini-cart-wrapper shadowcart">
+							            <div class="mini-carts">
+							              	<ul class="custom_shop_superDeal">
+										<li class="cus_super"><a href="<?php echo $baseurl;?>SuperDeals">SuperDeals</a></li>
+												<li class="cus_shoplatest"><a href="<?php echo $baseurl;?>shop-latest">Shop Latest</a></li>
+											</ul>
+											<?php echo $this->getChildHtml("minicart");?>
+											<ul class="custom_heart">
+												<li><a href="<?php echo $baseurl;?>catalog/product_compare/"><img src="<?php echo $baseurl;?>pub/media/Compare-icon.png"></a></li>
+												<li><a href="<?php echo $baseurl;?>wishlist"><img src="<?php echo $baseurl;?>pub/media/Wishlist-icon.png"></a></li>
+												
+											</ul>
+							            </div>
+						            </div>
+					                <?php echo $this->getChildHtml("topSearch");?>
+					                <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('hotline_header')->toHtml(); ?>
+					            </div>	
+					        </div>	
+					    </div>
+			        </div>    
+		    	</div>
+		    </div>
+		    <div class="header-control header-nav cms_home_1">
+		    	<div class="container">
+		    		<div class="row">
+						<span data-action="toggle-nav" class="action nav-toggle"><span><?php /* @escapeNotVerified */ echo __('Toggle Nav') ?></span></span>
+						<div class="col-lg-2 col-md-3 col-sm-2 col-xs-6 menu_left_home1">
+							<?php echo $this->getChildHtml("menu.vertical")?>
+							<?php echo $this->getChildHtml("navigation-sections")?>
+							<?php echo $this->getChildHtml("top.navigation.sections")?>
+						</div>
+						<div class="col-lg-7 col-md-7 col-sm-10 menu_primary hidden-xs">
+							<div class="header-wrapper-sticky<?php echo (!$this->helper('Rokanthemes\Themeoption\Helper\Themeconfig')->isEnableStickyHeader()) ? '' : ' enabled-header-sticky'; ?>">
+								<div class="container-header-sticky">
+									<div class="logo-sticky"><a href="<?php echo $block->getUrl('');?>" title="<?php echo __('Logo');?>"><img src="<?php echo ($this->helper('Rokanthemes\Themeoption\Helper\Themeconfig')->getStickyLogoHeader() != '') ? $this->helper('Rokanthemes\Themeoption\Helper\Themeconfig')->getStickyLogoHeader() : $this->getViewFileUrl("images/logo_sticky.png");?>" alt="<?php echo __('Logo');?>"/></a></div>
+									<div class="top-menu top-menu-sticky">
+									  <?php echo $this->getChildHtml("custom.topnav"); ?>
+									</div>
+								</div>
+							</div>
+						</div>	
+						<!-- <div class="col-lg-2 col-md-2 hidden-sm hidden-xs box_language">
+							<div class="top-header">
+								<?php //echo $this->getChildHtml("store_language"); ?>
+								<?php //echo $this->getChildHtml("currency"); ?>
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</div>
+	    </div>
+	</div>
+</div>
+
+<div id="header" class="header-container custom_mobile_header" style="display:none;">
+	<div class="header-content">
+	
+		<div class="top-header">
+			<div class="container cus_tophead">
+				<div class="row cus_top_header">
+					<div class="col-md-2 col-lg-2">	
+						
+					</div>
+					<div class="col-xs-12 col-md-10 col-lg-10">
+						<div class="top-bar-left">
+							<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('top-left-static')->toHtml(); ?>
+						</div>
+						<div class="top-bar-right">
+							<div class="top-info">
+								<div class="top-account has-child">
+									<?php echo $this->getChildHtml("top.links"); ?>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	    <div class="header">
+	    	<div class="header_main">
+		    	<div class="header-main">
+	          		<div class="container">
+	          			<div class="row">
+				          	<div class="wp-header">
+				          	
+							
+							<div class="header-control header-nav cms_home_1 col-xs-2">
+							<div class="container">
+								<div class="row">
+									<span data-action="toggle-nav" class="action nav-toggle"><span><?php /* @escapeNotVerified */ echo __('Toggle Nav') ?></span></span>
+									<div class="col-lg-2 col-md-3 col-sm-2 col-xs-6 menu_left_home1">
+										<?php echo $this->getChildHtml("menu.vertical")?>
+										<?php echo $this->getChildHtml("navigation-sections")?>
+										<?php echo $this->getChildHtml("top.navigation.sections")?>
+									</div>
+										<div class="col-lg-7 col-md-7 col-sm-10 menu_primary hidden-xs">
+								<div class="header-wrapper-sticky<?php echo (!$this->helper('Rokanthemes\Themeoption\Helper\Themeconfig')->isEnableStickyHeader()) ? '' : ' enabled-header-sticky'; ?>">
+									<div class="container-header-sticky">
+										<div class="logo-sticky"><a href="<?php echo $block->getUrl('');?>" title="<?php echo __('Logo');?>"><img src="<?php echo ($this->helper('Rokanthemes\Themeoption\Helper\Themeconfig')->getStickyLogoHeader() != '') ? $this->helper('Rokanthemes\Themeoption\Helper\Themeconfig')->getStickyLogoHeader() : $this->getViewFileUrl("images/logo_sticky.png");?>" alt="<?php echo __('Logo');?>"/></a></div>
+									<div class="top-menu top-menu-sticky">
+									  <?php //echo $this->getChildHtml("custom.topnav"); ?>
+									</div>
+								</div>
+							</div>
+									</div>	
+									<!-- <div class="col-lg-2 col-md-2 hidden-sm hidden-xs box_language">
+										<div class="top-header">
+											<?php //echo $this->getChildHtml("store_language"); ?>
+											<?php //echo $this->getChildHtml("currency"); ?>
+										</div>
+									</div> -->
+								</div>
+							</div>
+						</div>
+					            <div class="logo_mobile col-xs-4">
+									<?php echo $this->getChildHtml("logo"); ?>
+								</div>
+								<div class="mini-cart-wrapper shadowcart col-xs-6">
+							            <div class="mini-carts">
+							              	<ul class="custom_shop_superDeal">
+										<li class="cus_super"><a href="<?php echo $baseurl;?>SuperDeals">SuperDeals</a></li>
+												<li class="cus_shoplatest"><a href="<?php echo $baseurl;?>shop-latest">Shop Latest</a></li>
+											</ul>
+											<?php echo $this->getChildHtml("minicart");?>
+											<ul class="custom_heart">
+												<li><a href="<?php echo $baseurl;?>catalog/product_compare/"><img src="<?php echo $baseurl;?>pub/media/Compare-icon.png"></a></li>
+												<li><a href="<?php echo $baseurl;?>wishlist"><img src="<?php echo $baseurl;?>pub/media/Wishlist-icon.png"></a></li>
+												
+											</ul>
+							            </div>
+						            </div>		
+								<!--div class="hidden-sm hidden-md hidden-lg col-xs-8">
+								 	<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('menu_links_mobile')->toHtml(); ?>
+								</div-->
+					            
+					        </div>
+                         <div class="col-md-10 col-sm-10 col-xs-12 top-search">
+						            
+					                <?php echo $this->getChildHtml("topSearch");?>
+					                <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('hotline_header')->toHtml(); ?>
+					            </div>								
+					    </div>
+			        </div>    
+		    	</div>
+		    </div>
+		    
+	    </div>
+	</div>
+</div>
+
+
+<?php } ?>
+ 
+ 
+<?php /* header hide code end if condtion by manish */
+ ?>
+
+ 
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$request = $objectManager->get('\Magento\Framework\App\Request\Http');
+
+if ($request->getFullActionName() == 'catalog_product_view') { ?>
+    <?php 
+
+//*****************loading Customer session *****************//
+$customerSession = $objectManager->create('Magento\Customer\Model\Session');
+
+//******** Checking whether customer is logged in or not ********//
+if ($customerSession->isLoggedIn()) {
+	$blockObj= $block->getLayout()->createBlock('Aheadworks\RewardPoints\Block\Customer\RewardPointsBalance\Account');
+?>
+<div id="reward_model" style="display: none"> 
+	<div class="rewardimage"><img src="<?php echo $block->getViewFileUrl('images/coin.png'); ?>" />	</div>
+	<div class="rewardmessage">		 
+		<b>Thank you for your Review</b>		 
+	</div>
+	<div class="rewardcount">
+		<p>You just Earn</p>
+		<p><span id="enterpoint"><?php echo $blockObj->getCustomerRewardPointsBalance(); ?></span></p>
+		<p>Points</p>
+	</div>
+</div>
+<style>
+ .modal-popup .modal-header,
+ .modal-popup .modal-content,
+ .modal-popup .modal-footer {
+ 	padding-left: 0px;
+ 	padding-right: 0px;
+ }
+ #reward_model {
+ 	background: #fff;
+ 	padding: 10px;
+ 	padding-bottom: 0;
+ }
+ .modal-slide .modal-inner-wrap,
+ .modal-popup .modal-inner-wrap {
+ 	background-color: transparent;
+ 	box-shadow: unset;
+ }
+ .rewardimage {
+ 	text-align: center;
+ 	position: relative;
+ 	margin-top: -50px;
+ }
+ .rewardimage img {
+ 	max-width: 135px;
+ }
+ .modal-inner-wrap {
+ 	max-width: 360px;
+ }
+ .back_button_class {
+ 	width: 100%;
+ }
+ .modal-popup.modal-slide .modal-footer {
+ 	border-top: unset;
+ 	padding-top: 5px;
+ }
+ .modal-popup .modal-footer {
+ 	padding-bottom: 20px;
+ 	padding-top: 0px;
+ 	background: #fff;
+ 	padding-left: 20px;
+ 	padding-right: 20px;
+ }
+ .rewardcount {
+ 	text-align: center;
+ }
+ span#enterpoint {
+ 	font-size: 40px;
+ 	text-align: center;
+ 	font-weight: bold;
+ 	color: #72279C;
+ }
+ .rewardmessage,
+ .rewardcount {
+ 	text-align: center;
+ 	margin-top: 12px;
+ }
+ .rewardmessage b {
+ 	font-weight: bold;
+ }
+ .action-close {
+ 	display: none !important;
+ }
+ .reward_modal_popup .modal-content {
+ 	margin-bottom: 0px;
+ 	border-radius: unset;
+ 	padding-bottom: 20px;
+ }
+ .reward_modal_popup .modal-footer {
+ 	border-top: unset;
+ }
+ .modal-slide .modal-content {
+ 	padding-bottom: 20px;
+ }
+ .reward_modal_popup .back_button_class.action.primary {
+ 	background-color: #72279C;
+ 	color: #fff;
+ }
+ .reward_modal_popup .modal-popup.modal-slide .modal-footer {
+ 	padding-top: 10px;
+ }
+</style>
+ <script type="text/javascript">
+    require(['jquery','Magento_Ui/js/modal/modal'],function($, modal) {
+        'use strict';
+		function setIntervalX(callback, delay, repetitions) {
+		var x = 0;
+		var intervalID = window.setInterval(function () {
+
+		   callback();
+
+		   if (++x === repetitions) {
+			   window.clearInterval(intervalID);
+		   }
+		}, delay);
+		}
+		
+    // Your logic here
+		
+        var options = {
+            'type': 'popup',
+            'title': '',
+            'modalClass': 'reward_modal_popup',
+            'responsive': true,
+        //    'innerScroll': true,
+            'buttons': [{
+               text: $.mage.__('Ok'),
+                class: 'back_button_class btn action primary',
+                click: function () {
+                    this.closeModal();
+                    // any javascript coode
+                }
+            }]
+        };
+
+       
+		setIntervalX(function () {		
+       // $("#write_review, .reviews-actions .action.add").on('click',function(){
+		   if($(".page.messages").hasClass("customreview")==false){
+			   if($('.page.messages').find('div.message-success').length !== 0){
+					var reviewmessage=$(".page.messages .message-success div").text();
+				//	reviewmessage=reviewmessage.replace(/ +?/g, '');
+				var trimStr = $.trim(reviewmessage);
+					//reviewmessage=$.trim(reviewmessage);
+					//alert(trimStr);
+					$(".page.messages .messages").hide();
+					if(trimStr=="You submitted your review for moderation."){
+						$(".page.messages").addClass("customreview");
+						 var popup = modal(options, $('#reward_model'));	
+						$("#reward_model").modal("openModal");
+						
+					}
+			   }
+		   }
+			
+       // });
+		}, 2000, 5);
+       });
+   
+</script>
+<?php } ?>
+
+
+<?php 
+}
+
+?>
